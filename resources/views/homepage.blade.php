@@ -8,7 +8,6 @@
 
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <h1>HOMEPAGE</h1>
-        <h2><a href="" Products</h2>
+
     </body>
 </html>
