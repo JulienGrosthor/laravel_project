@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index()
+    public function cart_index()
     {
-        return '<h1>Panier</h1>';
+        return view('cart');
     }
 }

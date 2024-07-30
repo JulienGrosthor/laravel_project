@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function product_index()
     {
-        return '<h1>Liste des produits</h1>';
+        return view('product-list');
     }
 
-    public function show($id)
+    public function show(int $id)
     {
-        return '<h1>Fiche du produit ' . $id . '</h1>';
+        return view('product-details', ['id'=>$id]);
     }
 }
