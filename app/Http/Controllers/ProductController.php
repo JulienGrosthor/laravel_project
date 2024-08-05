@@ -14,13 +14,14 @@ class ProductController extends Controller
     // Méthode pour afficher la liste des produits
     public function product_index()
     {
+        // Pour récupérer les produits par nom croissant
+//        $products = Product::orderBy('name')->get();
 
-
-        // Pour afficher les produits par prix croissant
-        $products = Product::orderBy('price', 'asc')->get();
+        // Pour récupérer les produits par prix croissant
+//        $products = Product::orderBy('price')->get();
 
         // Pour récupérer tous les produits
-//        $products = Product::all();
+        $products = Product::all();
 
         // Retourne la vue 'product-list' avec les produits sélectionnés
         return view('product-list', ['products' => $products]);
