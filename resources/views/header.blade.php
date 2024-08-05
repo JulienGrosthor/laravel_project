@@ -22,6 +22,13 @@
         <li>
             <a href="/cart">Cart</a>
         </li>
+        <br>
+        <li>
+            <a href="/posts/index">BACK OFFICE (products)</a>
+        </li>
+        <li>
+            <a href="/posts/create">BACK OFFICE (add product)</a>
+        </li>
     </ul>
 
 </nav>
