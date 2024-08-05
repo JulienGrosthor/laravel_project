@@ -14,8 +14,13 @@ class ProductController extends Controller
     // Méthode pour afficher la liste des produits
     public function product_index()
     {
-        // Utilisation du modèle Eloquent pour récupérer tous les produits
-        $products = Product::all();
+
+
+        // Pour afficher les produits par prix croissant
+        $products = Product::orderBy('price', 'asc')->get();
+
+        // Pour récupérer tous les produits
+//        $products = Product::all();
 
         // Retourne la vue 'product-list' avec les produits sélectionnés
         return view('product-list', ['products' => $products]);
@@ -25,7 +30,7 @@ class ProductController extends Controller
     public function show(int $id)
     {
         // Utilisation du modèle Eloquent pour récupérer un produit spécifique par son ID
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
 
         // Retourne la vue 'product-details' avec le produit sélectionné
         return view('product-details', ['product' => $product]);
