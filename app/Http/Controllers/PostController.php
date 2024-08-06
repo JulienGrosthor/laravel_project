@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\support\Facades\Validator;
 class PostController extends Controller
 {
     /**
@@ -22,19 +23,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'price'=> 'required',
-            'weight'=> 'required',
-            'shine'=> 'required',
-            'image'=> 'required',
-            'quantity'=> 'required',
-            'inStock'=> 'required',
-            'categoryId'=> 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price'=> 'required|numeric|min:0',
+            'weight'=> 'required|numeric|min:0',
+            'shine'=> 'required|string|max:255',
+            'image'=> 'required|url',
+            'quantity'=> 'required|integer|min:0',
+            'inStock'=> 'required|integer|min:0',
+            'categoryId'=> 'required|integer|exists:categories,id',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('posts.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         Product::create($request->all());
+
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
     }
@@ -47,12 +55,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ]);
         $post = Product::find($id);
-        $post->update($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price'=> 'required|numeric|min:0',
+            'weight'=> 'required|numeric|min:0',
+            'shine'=> 'required|string|max:255',
+            'image'=> 'required|url',
+            'quantity'=> 'required|integer|min:0',
+            'inStock'=> 'required|integer|min:0',
+            'categoryId'=> 'required|integer|exists:categories,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('posts.edit', $id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+$validated = $validator->validated();
+        $post->update($validated);
         return redirect()->route('posts.index')
             ->with('success', 'Post updated successfully.');
     }

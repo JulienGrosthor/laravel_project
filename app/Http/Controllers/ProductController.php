@@ -18,10 +18,10 @@ class ProductController extends Controller
 //        $products = Product::orderBy('name')->get();
 
         // Pour récupérer les produits par prix croissant
-        $products = Product::orderBy('price')->get();
+//        $products = Product::orderBy('price')->get();
 
         // Pour récupérer tous les produits
-//        $products = Product::all();
+        $products = Product::all();
 
         // Retourne la vue 'product-list' avec les produits sélectionnés
         return view('product-list', ['products' => $products]);
@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function show(int $id)
     {
         // Utilisation du modèle Eloquent pour récupérer un produit spécifique par son ID
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         // Retourne la vue 'product-details' avec le produit sélectionné
         return view('product-details', ['product' => $product]);
