@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
+
 
 Route::get('/', [HomeController::class, 'home_index']);
 
@@ -14,6 +16,8 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('show.prod
 
 Route::get('/cart', [CartController::class, 'cart_index']);
 
+// Routes pour CategoryController
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 //routes de PostController
 

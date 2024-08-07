@@ -20,6 +20,9 @@
             <a href="/product">Product list</a>
         </li>
         <li>
+            <a href="/categories">Product categories</a>
+        </li>
+        <li>
             <a href="/cart">Cart</a>
         </li>
         <br>
